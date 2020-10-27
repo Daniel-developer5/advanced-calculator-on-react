@@ -1,0 +1,13 @@
+@import '../../scss-helper/scss-variable.scss';
+
+.MenuBox {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+
+    > button {
+        color: #86878a;
+        border-radius: 50%;
+        padding: 5px;
+    }
+}

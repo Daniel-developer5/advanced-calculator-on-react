@@ -1,0 +1,16 @@
+@import '../../../scss-helper/scss-variable.scss';
+
+.MathMenu {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: $blue;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+        background-color: rgba($color: $blue, $alpha: .8);
+    }
+}

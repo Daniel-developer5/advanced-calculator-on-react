@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
+import './App.scss'
+
+import Output from './components/Output/Output'
+import Buttons from './components/Buttons/Buttons'
+import calculate from './calculator/calculate'
+import validator from './validator/validator'
+
+const App = () => {
+  const [ expression, setExpression ] = useState('')
+  const [ prevExp, setPrevExp ] = useState('')
+
+  const getExpression = text => setExpression( validator(`${expression}${text}`) )
+
+  const backspace = ({ clearAll = false }) => {
+    clearAll ? setExpression('') : setExpression(`${ expression.slice(0, -1) }`)
+  }
+
+  const readyToCalc = () => calculate(expression, setExpression, setPrevExp)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="calculator">
+        <Output 
+          expression={ expression }
+          prevExp={ prevExp }
+        />
+        <Buttons 
+          getExpression={ getExpression } 
+          backspace={ backspace }  
+          readyToCalc={ readyToCalc }
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
