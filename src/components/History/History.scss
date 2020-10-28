@@ -1,0 +1,92 @@
+@import '../../scss-helper/scss-variable.scss';
+
+%between {
+    display: flex;
+    justify-content: space-between;
+}
+
+%example {
+    padding: 5px 0;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 30px;
+}
+
+.History {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #fff;
+    transform-origin: top right;
+    transform: scale(0);
+    transition: $transition;
+
+    &.open {
+        transform: scale(1);
+    }
+
+    header {
+        box-shadow: 0 0 10px #b1b2b3;
+        z-index: 2;
+        color: $blue;
+        background-color: #fff;
+        position: sticky;
+        top: 0;
+        @extend %between;
+
+        > div:last-child {
+            width: 80%;
+            align-items: center;
+            @extend %between;
+
+            span {
+                font-weight: 500;
+                letter-spacing: 1px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    ul {
+        flex-grow: 1;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+            transition: $transition;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background-color: #d8d7d7;
+            border-radius: 20px;
+    
+            &:hover {
+                background-color: $darkgray;
+            }
+        }
+
+        li {
+            border-top: 2px solid $gray;
+            padding: 15px 25px 25px 25px;
+
+            div:first-child {
+                color: $blue;
+            }
+
+            div:nth-child(2) {
+                color: $darkgray;
+                @extend %example;
+            }
+
+            div:last-child {
+                @extend %example;
+            }
+        }
+    }
+}

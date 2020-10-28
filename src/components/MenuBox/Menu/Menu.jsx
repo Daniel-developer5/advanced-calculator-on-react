@@ -5,17 +5,12 @@ import { Button } from '@material-ui/core'
 
 import './Menu.scss'
 
-const Menu = ({ toggleMenu }) => {
+const Menu = ({ toggleMenu, openHistory, setOpenHistory }) => {
     const [ menuClass, setMenuClass ] = useState('')
 
-    const hideMenu = e => {
-        if (
-            !e.target.className.match('not-hide') &&
-            !e.target.parentNode.className.match('not-hide')
-        ) {
-            setMenuClass('')
-            setTimeout(toggleMenu, 100)
-        }
+    const hideMenu = () => {
+        setMenuClass('')
+        setTimeout(toggleMenu, 100)
     }
 
     useMountEffect(() => {
@@ -29,7 +24,12 @@ const Menu = ({ toggleMenu }) => {
     return (
         <ul className={ `Menu ${ menuClass }` }>
             <li>
-                <Button className="not-hide">History</Button>
+                <Button 
+                    className="not-hide"
+                    onClick={ () => setOpenHistory(true) }
+                > 
+                    History
+                </Button>
             </li>
             <li>
                 <Button className="not-hide">Choose theme</Button>

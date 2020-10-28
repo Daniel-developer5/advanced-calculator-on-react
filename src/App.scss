@@ -45,4 +45,6 @@ button, input, textarea {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }

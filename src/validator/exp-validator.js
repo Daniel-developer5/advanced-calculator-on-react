@@ -1,4 +1,4 @@
-const validator = expression => {
+const expValidator = expression => {
     if (
         expression.slice(-1) === '.' &&
         expression.slice(-2, -1) === '.' 
@@ -9,4 +9,4 @@ const validator = expression => {
     }
 }
 
-export default validator
+export default expValidator

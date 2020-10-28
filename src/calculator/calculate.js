@@ -1,12 +1,13 @@
 import { Parser } from 'expr-eval'
+import moment from 'moment'
 
 const calculate = (expression, setResult, setPrevExp) => {
     setPrevExp(expression)
     
     const mathExp = expression
-        .replace(String.fromCodePoint(8722), '-')
-        .replace(String.fromCodePoint(247), '/')
-        .replace(String.fromCodePoint(215), '*')
+        .replaceAll(String.fromCodePoint(8722), '-')
+        .replaceAll(String.fromCodePoint(247), '/')
+        .replaceAll(String.fromCodePoint(215), '*')
     
     const parser = new Parser()
 
@@ -23,6 +24,12 @@ const calculate = (expression, setResult, setPrevExp) => {
     }
     
     setResult(arrResult.join(''))
+
+    return { 
+        expression, 
+        result: arrResult.join(''),
+        date: moment().format('LL').slice(0, -6)
+    }
 }
 
 export default calculate

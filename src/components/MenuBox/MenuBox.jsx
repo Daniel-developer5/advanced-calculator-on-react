@@ -6,13 +6,16 @@ import Menu from './Menu/Menu'
 
 import './MenuBox.scss'
 
-const MenuBox = () => {
+const MenuBox = ({ setOpenHistory }) => {
     const [ menuOpen, setMenuOpen ] = useState(false)
 
     const toggleMenu = () => setMenuOpen(!menuOpen)
 
     const menu = (
-        <Menu toggleMenu={ toggleMenu } />
+        <Menu 
+            toggleMenu={ toggleMenu } 
+            setOpenHistory={ setOpenHistory }
+        />
     )
 
     return (

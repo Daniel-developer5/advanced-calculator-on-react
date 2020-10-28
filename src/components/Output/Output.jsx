@@ -5,7 +5,7 @@ import MenuBox from '../MenuBox/MenuBox'
 
 import './Output.scss'
 
-const Output = ({ expression, prevExp }) => {
+const Output = ({ expression, prevExp, setOpenHistory }) => {
     const [ after, setAfter ] = useState(true)
 
     const output = createRef()
@@ -30,7 +30,7 @@ const Output = ({ expression, prevExp }) => {
 
     return (
         <div className="output-box">
-            <MenuBox />
+            <MenuBox setOpenHistory={ setOpenHistory } />
             <span>{ prevExp }</span>
             <div className={ `after-box ${ after ? 'after' : null }` }>
                 <div 
