@@ -5,7 +5,7 @@ import './App.scss'
 import Output from './components/Output/Output'
 import Buttons from './components/Buttons/Buttons'
 import calculate from './calculator/calculate'
-import expValidator from './validator/exp-validator'
+import { expValidator, isCalculateAble } from './validators'
 import History from './components/History/History'
 
 const App = () => {
@@ -15,16 +15,16 @@ const App = () => {
     [ openHistory, setOpenHistory ] = useState(false),
     [ examples, setExamples ] = useState([])
 
-  const getExpression = text => {
-    setExpression( expValidator(`${expression}${text}`) )
-  }
+  const getExpression = text => setExpression( expValidator(`${expression}${text}`) )
 
   const backspace = ({ clearAll = false }) => {
     clearAll ? setExpression('') : setExpression(`${ expression.slice(0, -1) }`)
+
+    setPrevExp('')
   }
 
   const readyToCalc = () => {
-    if (expression) {
+    if ( isCalculateAble(expression, true) ) {
       const example = calculate(expression, setExpression, setPrevExp)
 
       setExamples([ ...examples, example ])

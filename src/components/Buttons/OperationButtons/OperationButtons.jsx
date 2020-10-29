@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core'
 
 const OperationButtons = ({ getExpression, backspace }) => {
     const symbols = [247, 215, 8722, 43]
+        .map(code => String.fromCodePoint(code))
 
     const setExpression = e => getExpression(e.target.textContent)
 
@@ -20,7 +21,7 @@ const OperationButtons = ({ getExpression, backspace }) => {
         return (
             <li key={ symbol }>
                 <Button onClick={ setExpression }>
-                    { String.fromCodePoint(symbol) }
+                    { symbol }
                 </Button>
             </li>
         )
