@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { IconButton } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import MoreVernIcon from '@material-ui/icons/MoreVert'
+import { Button } from '@material-ui/core'
+import MenuBox from '../MenuBox/MenuBox'
+import { HistoryOverlay } from '../Overlay'
+import Empty from './Empty/Empty'
 
 import './History.scss'
 
-const History = ({ examples, openHistory, setOpenHistory }) => {
+const History = ({ examples, openHistory, setOpenHistory, setExamples }) => {
+    const [ openConfirm, setOpenConfirm ] = useState(false)
+
     const style = { color: '#1a73e9' }
+
+    const action = clearExamples => {
+        setOpenConfirm(false)
+
+        if (clearExamples)
+            setExamples([])
+    }
 
     const list = examples.map(({ expression, result, date }, index) => {
         return (
@@ -30,14 +42,17 @@ const History = ({ examples, openHistory, setOpenHistory }) => {
                 </IconButton>
                 <div>
                     <span>History</span>
-                    <IconButton style={ style } >
-                        <MoreVernIcon />
-                    </IconButton>
+                    <MenuBox style={ style }>
+                        <li>
+                            <Button onClick={ () => setOpenConfirm(true) }>
+                                Clear History
+                            </Button>
+                        </li>
+                    </MenuBox>
                 </div>
             </header>
-            <ul>
-                { list }
-            </ul>
+            { list[0] ? <ul>{ list }</ul> : <Empty /> }
+            { openConfirm ? <HistoryOverlay action={ action } /> : null }
         </div>
     )
 }

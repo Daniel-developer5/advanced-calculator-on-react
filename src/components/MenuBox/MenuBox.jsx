@@ -6,7 +6,7 @@ import Menu from './Menu/Menu'
 
 import './MenuBox.scss'
 
-const MenuBox = ({ setOpenHistory }) => {
+const MenuBox = ({ children, style }) => {
     const [ menuOpen, setMenuOpen ] = useState(false)
 
     const toggleMenu = () => setMenuOpen(!menuOpen)
@@ -14,13 +14,17 @@ const MenuBox = ({ setOpenHistory }) => {
     const menu = (
         <Menu 
             toggleMenu={ toggleMenu } 
-            setOpenHistory={ setOpenHistory }
-        />
+        >
+            { children }
+        </Menu>
     )
 
     return (
         <div className="MenuBox">
-            <IconButton onClick={ toggleMenu }>
+            <IconButton 
+                onClick={ toggleMenu }
+                style={ style }
+            >
                 <MoreVertIcon />
             </IconButton>
             { menuOpen ? menu : null }

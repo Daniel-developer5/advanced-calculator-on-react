@@ -7,12 +7,29 @@ const expValidator = expression => {
     ]
 
     const 
+        regExp = new RegExp(`[${ symbols.join('') }]`, 'g'),
+        regExpDT = new RegExp(`[${ symbolPairs[0].join('') }]`, 'g'),
+        regExpPM = new RegExp(`[${ symbolPairs[1].join('') }]`, 'g')
+
+    const 
         expSlice = expression.slice(-1),
         expSliceDouble = expression.slice(-2, -1),
-        slicedStr = `${expSlice}${expSliceDouble}`
+        slicedStr = `${expSliceDouble}${expSlice}`
 
-    if ( expSlice === '.' && expSliceDouble === '.' ) {
-        expression = expression.slice(0, -1)
+    const parsedByDot = expression
+        .split(regExp)
+        .slice(-1)[0]
+        .split('')
+        .filter(char => char === '.')
+
+    if (slicedStr === '..') {
+        return expression.slice(0, -1)
+    } 
+
+    if ( 
+        [ ...expression.slice(-3).matchAll(regExp) ].length === 3
+    ) {
+        return expression = expression.slice(0, -1)
     } 
 
     if ( 
@@ -23,7 +40,7 @@ const expValidator = expression => {
     }
 
     symbols.forEach(char => {
-        if ( expSlice === char && expSliceDouble === char) {
+        if (slicedStr === char + char) {
             expression = expression.slice(0, -1)
         }
     })
@@ -34,8 +51,18 @@ const expValidator = expression => {
             slicedStr === symbolPair.reverse().join('')
         ) {
             expression = `${expression.slice(0, -2)}${expression.slice(-1)}`
-        }
+        }  
     })
+
+    if (parsedByDot.length === 2) {
+        expression = expression.slice(0, -1)
+    }
+
+    if (
+        expSlice.match(regExpDT) && expSliceDouble.match(regExpPM)
+    ) {
+        expression = expression.slice(0, -1)
+    }
 
     return expression    
 }

@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { useMountEffect } from '../../../hooks/hooks'
 
-import { Button } from '@material-ui/core'
-
 import './Menu.scss'
 
-const Menu = ({ toggleMenu, openHistory, setOpenHistory }) => {
+const Menu = ({ toggleMenu, children }) => {
     const [ menuClass, setMenuClass ] = useState('')
 
     const hideMenu = () => {
@@ -23,17 +21,7 @@ const Menu = ({ toggleMenu, openHistory, setOpenHistory }) => {
 
     return (
         <ul className={ `Menu ${ menuClass }` }>
-            <li>
-                <Button 
-                    className="not-hide"
-                    onClick={ () => setOpenHistory(true) }
-                > 
-                    History
-                </Button>
-            </li>
-            <li>
-                <Button className="not-hide">Choose theme</Button>
-            </li>
+            { children }
         </ul>
     )
 }

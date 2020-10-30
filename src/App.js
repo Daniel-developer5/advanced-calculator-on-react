@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 
-import './App.scss'
-
 import Output from './components/Output/Output'
 import Buttons from './components/Buttons/Buttons'
 import calculate from './calculator/calculate'
 import { expValidator, isCalculateAble } from './validators'
 import History from './components/History/History'
+import { ThemesOverlay } from './components/Overlay'
+
+import './App.scss'
 
 const App = () => {
   const 
     [ expression, setExpression ] = useState(''),
     [ prevExp, setPrevExp ] = useState(''),
     [ openHistory, setOpenHistory ] = useState(false),
-    [ examples, setExamples ] = useState([])
+    [ examples, setExamples ] = useState([]),
+    [ themesOverlay, setThemesOverlay ] = useState(false)
 
   const getExpression = text => setExpression( expValidator(`${expression}${text}`) )
 
@@ -38,6 +40,7 @@ const App = () => {
           expression={ expression }
           prevExp={ prevExp }
           setOpenHistory={ setOpenHistory }
+          setThemesOverlay={ setThemesOverlay }
         />
         <Buttons 
           getExpression={ getExpression } 
@@ -48,7 +51,9 @@ const App = () => {
           examples={ examples }
           openHistory={ openHistory }
           setOpenHistory={ setOpenHistory } 
+          setExamples={ setExamples }
         />
+        { themesOverlay ? <ThemesOverlay /> : null }
       </div>
     </div>
   )

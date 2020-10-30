@@ -3,3 +3,11 @@ $darkgray: #81878c;
 $blue: #1a73e9;
 
 $transition: ease .3s;
+
+%absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

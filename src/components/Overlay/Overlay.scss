@@ -1,0 +1,40 @@
+@import '../../scss-helper/scss-variable.scss';
+
+.Overlay {
+    z-index: 2;
+    background-color: rgba($color: #000000, $alpha: .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @extend %absolute;
+
+    > div {
+        border-radius: 5px;
+        background-color: #fff;
+        padding: 20px 20px 10px 20px;
+        width: 90%;
+
+        > p {
+            color: $darkgray;
+        }
+
+        .title {
+            font-weight: 500;
+        }
+
+        fieldset {
+            margin-top: 20px;
+        }
+
+        .btn-box {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+
+            button span {
+                color: $blue;
+                text-transform: capitalize;
+            }
+        }
+    }
+}
