@@ -1,4 +1,3 @@
-import ThemesOverlay from './overlay-children/ThemesOverlay'
-import HistoryOverlay from './overlay-children/HistoryOverlay'
+import ThemesOverlay from './overlays/ThemesOverlay'
 
-export { ThemesOverlay, HistoryOverlay }
+export { ThemesOverlay }

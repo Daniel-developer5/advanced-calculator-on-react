@@ -4,7 +4,7 @@ import { IconButton } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { Button } from '@material-ui/core'
 import MenuBox from '../MenuBox/MenuBox'
-import { HistoryOverlay } from '../Overlay'
+import HistoryOverlay from './HistoryOverlay/HistoryOverlay'
 import Empty from './Empty/Empty'
 
 import './History.scss'

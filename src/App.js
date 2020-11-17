@@ -15,7 +15,8 @@ const App = () => {
     [ prevExp, setPrevExp ] = useState(''),
     [ openHistory, setOpenHistory ] = useState(false),
     [ examples, setExamples ] = useState([]),
-    [ themesOverlay, setThemesOverlay ] = useState(false)
+    [ themesOverlay, setThemesOverlay ] = useState(false),
+    [ theme, setTheme ] = useState('light')
 
   const getExpression = text => setExpression( expValidator(`${expression}${text}`) )
 
@@ -35,7 +36,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="calculator">
+      <div className={`calculator ${theme}`}>
         <Output 
           expression={ expression }
           prevExp={ prevExp }
@@ -53,7 +54,14 @@ const App = () => {
           setOpenHistory={ setOpenHistory } 
           setExamples={ setExamples }
         />
-        { themesOverlay ? <ThemesOverlay /> : null }
+        { 
+          themesOverlay ? 
+          <ThemesOverlay 
+            setThemesOverlay={ setThemesOverlay } 
+            setTheme={ setTheme } 
+            theme={ theme }
+          /> : null 
+        }
       </div>
     </div>
   )

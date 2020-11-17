@@ -43,7 +43,7 @@ const Output = ({ expression, prevExp, setOpenHistory, setThemesOverlay }) => {
                 <li>
                     <Button onClick={ () => setThemesOverlay(true) }>
                         Choose theme
-                        </Button>
+                    </Button>
                 </li>
             </MenuBox>
             <span>{ prevExp }</span>

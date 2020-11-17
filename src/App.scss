@@ -47,4 +47,21 @@ button, input, textarea {
     flex-direction: column;
     position: relative;
     z-index: 1;
+
+    &.dark {
+        filter: invert(1);
+        background-color: #ddd;
+
+        .Menu {
+            background-color: #c7c6c6;
+        }
+
+        .Overlay {
+            background-color: rgba(255, 255, 255, .5);
+
+            > div {
+                background-color: #ddd;
+            }
+        }
+    }
 }

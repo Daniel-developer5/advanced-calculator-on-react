@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Overlay from '../Overlay'
+import Overlay from '../../Overlay/Overlay'
 import { Button } from '@material-ui/core'
 
 const HistoryOverlay = ({ action }) => {
